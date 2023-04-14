@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>Geo Learner-首页</title>
+  {% include 'depandence.html' %}
+</head>
+<body>
+    {% include 'header.html' %}
+    <!--正文-->
+    <div class="row">
+        <div class="medium-12 columns">
+          <div class="panel">
+            <h1>欢迎访问Geo Learner</h1>
+            <p>内部测试中。如遇问题，请反馈</p>
+            <button type="button" class="button tiny">我要反馈</button>
+          </div>
+        </div>
+      </div>
+       
+      <div class="row">
+        <div class="medium-4 columns">
+          <h3>开始学习</h3>
+          <p>一万年太久，只争朝夕</p>
+          <script>
+            function go_learn(){
+                location.replace("/q")
+            }
+          </script>
+          <button type="button" class="button tiny" onclick="go_learn();">Go</button>
+        </div>
+        <div class="medium-4 columns">
+          
+        </div>
+        <div class="medium-4 columns">
+          
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!-- 注释 行首，行尾，行，块 作用：说明思路，解释语法，解释规则 版权信息 用于布局练习的DEMO 作者：Kadare Chen 日期：2019-08-19 09:45 版本：v1.0 all right received © Copyed by Kadare Chen -->
+<!-- 何为HTML 用于浏览器的解释性结构语言 是一种所见即所得的快速结构语言 是一种有明确分工（体现在*标签*上）的结构化（体现在*层级关系/成对*）的标记语言 常见标签？ A-Z a abbr acronym applet area b body br base bdl bdo big button c center canvas cite code col d div dd del dir dl dt ... 标签的属性？ 公共属性：id name class style 个性属性：href src 差异属性(自定义属性)：date date-xxx HTML和CSS的关系 就行修房子和装修的关系 html：修房子 css：布局和样式，装修考他 两者都可以独立存在 html+css+JS的关系 强弱电、水电气改造 DEMO：布局 基于国字型的基本布局 -->
+<!DOCTYPE html>
+<!-- 就关系而言（层级） HTML>HEAD>BODY>Tags HTML：浏览器的内核 IE edge firefox webkit head标签：面向浏览器解释器（底层） body标签：面向用户 -->
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maxmum-scale=1.0,user-scalable=no" />
+    <title>Login</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            /* html面向浏览器,他多大浏览器就多大 */
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            background:liner-gradient(45deg,rgb(234,223,219),#dde4ea);
+        }
+
+        .panel_warp {
+            /* 铺满浏览器整个页面 颜色为红色 */
+            /* DIV 独占一行 width: 100% 没有行高 height: 0 边框不可见 border:0/none */
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(to bottom right,#dce3e9,#eae8d9);
+            /* 自容器居中布局 */
+            /* 弹性盒子来完成布局效果 */
+            /* 特点： 1. 作用于父容器，一级子容器生效 */
+            display: flex;
+            /* 设置为盒子模型 */
+            justify-content: center;
+            /* 设置为水平居中 */
+            align-items: center;
+            /* 设置为垂直居中 */
+            background-size: 100% 100%;
+        }
+
+        .panel_login {
+            height: 300px;
+            /* width: 500px; */
+            width: 500px;
+            background-color: white;
+            box-shadow: 0px 0px 8px 0px black;
+            /* 居中布局 所有元素定位的顶点在左上角 */
+            /* position: absolute; top: 50%; left: 50%; margin-left: -250px; margin-top: -150px; */
+            margin: 0 auto;
+            display: flex;
+            /* 默认弹性盒模型从左向右排列 */
+            flex-flow: column;
+            /* 排列方向改变为垂直排列，相应属性的作用方向也发生变化 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .panel_login div {
+            /* background-color: yellow; */
+            height: 40px;
+            /* margin-top: 10px; */
+            /* width: 380px; */
+            width: 90%;
+            margin-top: 10px;
+            text-align: center;
+            /* margin-left: 60px; */
+            /* 40*4+10*4=200 */
+        }
+
+        .panel_login div:first-child {
+            /* margin-top: 55px; */
+            margin-top: 0px;
+            text-align: center;
+            line-height: 40px;
+            /* 行高为容器高则垂直居中 */
+            font-size: 1.25rem;
+            /* rem/em都是等比缩放单位，参考大小的倍数 */
+            color: #000000;
+        }
+
+        /* 选择器分类 1. 样式类名选择器 .xxx 2. ID选择器 #xxx 具有唯一性，前提是标签得有ID 3. 标签选择器 div a input ... 4. 组合选择器 .xxx #xxx / .xxx input 5. 伪类选择器 * 选择器可以根据层级进行设定，也可以只作用于某一层级 */
+        .panel_login div>input {
+            /* background-color: #0062CC; */
+            width: 80%;
+            height: 100%;
+            border: 0px;
+            border-bottom: 1px solid #ccc!important;
+            padding:14px;
+            border-color: #000000!important;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .panel_login div>button {
+            height: 100%;
+            width: 140px;
+            margin: 0 auto;
+            border: 0px;
+            /*border-radius: 20px;*/
+            background-color: #0066b8;
+            color: white;
+        }
+
+        .more {
+            color: #0062CC;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        form{
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 自适应布局 根据浏览器的大小变化而变化的布局容器设计 -->
+    <div class="panel_warp">
+        <div class="panel_login">
+            <div> <h3 align="left">Geo Learner 账户 </h3></div>
+            <form name="input" action="/login/" method="post">
+                {% csrf_token %}
+                <div> <input type="'text" name="username" id="" value="" placeholder="用户名" autocomplete="off"/> </div>
+                <div> <input type="password" name="pwd" id="" value="" placeholder="密码" /> </div>
+                <div style="text-align: right;"> <button type="submit">登录</button> </div>
+            </form>
+            <div class="more">遇到问题？ </div> <!-- <div class="more"> 遇到问题？ </div> -->
+        </div>
+    </div>
+</body>
+
+</html>

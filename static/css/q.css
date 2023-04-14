@@ -1,0 +1,19 @@
+.choice_r{
+    background-color: #ddffff!important;
+    padding: 14px;
+    border-left: 6px solid #ccc!important;
+    border-color: #2196F3!important;
+    width: 90%;
+    font-size: large;
+    margin-top:10px;
+}
+
+
+
+.choice_f{
+    margin-bottom:10px;
+}
+
+.choice_b{
+    color: #2196F3;
+}

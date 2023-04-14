@@ -1,0 +1,60 @@
+<!-- 初始化Fundation-->
+<script>
+    $(document).ready(function() {
+        $(document).foundation();
+    })
+</script>
+
+<!-- 导航栏 -->
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">Geo Leaner</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/q">Learn</a></li>
+
+      </ul>
+      <ul class="right" id="nav">
+        <li><a href="#" id="nav_2">Sign Up</a></li>
+        <li><a href="/login" id="nav_l">Login</a></li>
+      </ul>
+      <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+              }
+          }
+          return "";
+        } 
+        var is_login = false
+        if(getCookie('username')!=''){
+          var is_login = true
+        }
+        
+        
+        if(is_login){
+            var x=document.getElementById("nav_l");
+            x.innerHTML=getCookie('username')
+            var y=document.getElementById("nav_2");
+            y.innerHTML='Logout'
+            y.href = '/logout'
+        }
+        
+        </script>
+    </section>
+
+  </nav>
+  <!-- 最外层div：页面布局 -->
