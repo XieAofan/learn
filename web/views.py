@@ -18,7 +18,7 @@ def my_login(request):
     username = request.POST.get("username")
     password = request.POST.get("pwd")
     user_obj = auth.authenticate(username=username, password=password)
-    print(user_obj.username)
+    #print(user_obj.username)
     if not user_obj:
         return redirect("/login/")
     else:

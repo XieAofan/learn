@@ -24,6 +24,19 @@ class Question_Group(models.Model):
     question_ids = models.JSONField(null=True)
     ac_data = models.JSONField(null=True)
     qg_id = models.AutoField(primary_key=True)
+    single = 's'
+    indefinite = 'i'
+    mass_media = 'm'
+    q_type_c = [
+        (single, "单选"),
+        (indefinite, "不定项"),
+        (mass_media, "多媒体"),
+    ]
+    q_type  = models.CharField(
+        max_length=10,
+        choices=q_type_c,
+        default=indefinite,
+    )
     geo = 'g'
     eso = 'e'
     Subject_c = [

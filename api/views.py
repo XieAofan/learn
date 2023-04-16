@@ -5,7 +5,7 @@ import json
 
 def get_question_groups(QG:Question_Group):
     qg = []
-    for i in QG.question_ids:
+    for i in QG.question_ids: # type: ignore
         qg.append(Question.objects.get(q_id=i))
     return qg
 
@@ -19,7 +19,7 @@ def get_question(request):
            }
     s_data['data']['Subject'] = QG.subject
     s_data['data']['ac_data'] = QG.ac_data
-    s_data['data']['ac_data'] = QG.ac_data
+    #s_data['data']['ac_data'] = QG.ac_data
     s_data['data']['question'] = []
     for q in questions:
         mq = {
@@ -35,6 +35,7 @@ def add_question(request):
     QG = Question_Group()
     QG.source = source
     QG.ac_data = None
+    QG.q_type = request.POST['type']
     QG.subject = request.POST['subject']
     q_ids = []
     for q in questions:
@@ -46,7 +47,7 @@ def add_question(request):
         Q.save()
         q_id = Q.q_id
         q_ids.append(q_id)
-    QG.question_ids = q_ids
+    QG.question_ids = q_ids # type: ignore
     QG.save()
     s_data ={'state':True,
            'type':'new_question',
